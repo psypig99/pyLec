@@ -38,5 +38,7 @@ def create_dictionary(clean_word_list):
         else:
             word_count[word] = 1
 
+    for key, value in sorted(word_count.items(), key=operator.itemgetter(1)):
+        print(key, value)
 
-start("http://creativeworkds.tistory.com")
+start("http://www.naver.com" )
