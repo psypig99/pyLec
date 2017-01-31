@@ -6,14 +6,12 @@ def start(url):
     word_list = []
     source_code = requests.get(url).text
     soup = BeautifulSoup(source_code, "lxml")
-    p_tag = soup.findAll('p', {'class':'tt-post-title'})
-    print(soup)
+    p_tag = soup.findAll('div', {'class':'tt-post-title'})
     for title_text in p_tag:
         content = title_text.text
+        print(content)
         words = content.lower().split()
-        print(words)
         for each_word in words:
-            print(each_word)
             word_list.append(each_word)
 
     clean_up_list(word_list)
@@ -37,6 +35,8 @@ def create_dictionary(clean_word_list):
             word_count[word] += 1
         else:
             word_count[word] = 1
+    for key, value in sorted(word_count.items(), key=operator.itemgetter(1)):
+        print(key, value)
 
     for key, value in sorted(word_count.items(), key=operator.itemgetter(1)):
         print(key, value)
