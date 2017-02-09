@@ -12,14 +12,17 @@ class LinkFinder(HTMLParser):
         if tag == "a":
             for(attribute, value) in attrs:
                 if attribute == "href":
-                    url = parse.urljoin()
+                    url = parse.urljoin(self.base_url, value)
+                    self.links.add(url)
 
-    def handle_endtag(self, tag):
-        print(tag)
+    def page_links(self):
+        return self.links
 
     def error(self, message):
         pass
 
-finder = LinkFinder()
-finder.feed("<html><head><title> TITLE TEST </title></head>"
-            "<body><h1> Parse Test</h1><a href='www.naver.com'/></body></html>")
+# finder = LinkFinder()
+# finder.feed("<html><head><title> TITLE TEST </title></head>"
+#             "<body><h1> Parse Test</h1><a href='www.naver.com'/></body></html>")
+
+print("module name is "+__name__)
